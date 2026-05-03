@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product - Inventory</title>
+    <title>Edit Product - Inventory</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -57,11 +57,6 @@
 
         nav a:hover {
             color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
         }
 
 
@@ -130,59 +125,107 @@
         button:hover {
             background-color: var(--primary-hover);
         }
+
+        .loading {
+            text-align: center;
+            color: #64748b;
+        }
     </style>
 </head>
 
 <body>
-
     <header>
         <h3>Product Inventory</h3>
         <nav>
             <a href="./index.html">Home</a>
-            <a href="./add-product.html" class="active">Add Product</a>
+            <a href="./add-product.html">Add Product</a>
         </nav>
     </header>
 
     <main>
-        <form onsubmit="handleFormSubmit(event)">
-            <h2>Add New Product</h2>
+        <div id="loadingMessage" class="loading">Loading product data...</div>
+        <form id="editForm" onsubmit="handleFormSubmit(event)" style="display: none;">
+            <h2>Edit Product</h2>
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" placeholder="e.g. Wireless Mouse" required>
+                <input type="text" id="title" name="title" required>
             </div>
 
             <div class="form-group">
                 <label for="price">Price ($)</label>
-                <input type="number" id="price" name="price" step="0.01" min="0.01" placeholder="e.g. 29.99" required>
+                <input type="number" id="price" name="price" step="0.01" min="0.01" required>
             </div>
 
             <div class="form-group">
                 <label for="rating">Rating (1-5)</label>
-                <input type="number" id="rating" name="rating" step="0.1" min="1" max="5" placeholder="e.g. 4.5"
-                    required>
+                <input type="number" id="rating" name="rating" step="0.1" min="1" max="5" required>
             </div>
 
             <div class="form-group">
-                <label for="thumbnail">Image URL (Optional)</label>
-                <input type="url" id="thumbnail" name="thumbnail" placeholder="https://example.com/image.png">
+                <label for="thumbnail">Image URL</label>
+                <input type="url" id="thumbnail" name="thumbnail">
             </div>
 
-            <button type="submit">Add Product</button>
+            <button type="submit">Update Product</button>
         </form>
     </main>
 
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const API_URL = "http://127.0.0.1:5005/products";
+
+        async function loadProductData() {
+            if (!productId) {
+                alert("No product ID provided!");
+                window.location.href = "./index.html";
+                return;
+            }
+
+            try {
+
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error("Failed to fetch products");
+                const data = await response.json();
+                const product = data.products.find(p => p.id == productId);
+
+                if (!product) {
+                    alert("Product not found!");
+                    window.location.href = "./index.html";
+                    return;
+                }
+
+
+                document.getElementById('title').value = product.title;
+                document.getElementById('price').value = product.price;
+                document.getElementById('rating').value = product.rating;
+                if (product.thumbnail && !product.thumbnail.includes("no-pictures.png")) {
+                    document.getElementById('thumbnail').value = product.thumbnail;
+                }
+
+
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('editForm').style.display = 'flex';
+
+            } catch (error) {
+                console.error("Error loading product:", error);
+                document.getElementById('loadingMessage').innerText = "Failed to load product data.";
+            }
+        }
+
+
+        loadProductData();
+
 
         async function handleFormSubmit(e) {
-
             e.preventDefault();
+
 
             const title = e.target.title.value;
             const price = parseFloat(e.target.price.value);
             const rating = parseFloat(e.target.rating.value);
             const thumbnail = e.target.thumbnail.value;
-
 
             const payload = { title, price, rating };
             if (thumbnail) {
@@ -190,9 +233,8 @@
             }
 
             try {
-
-                const response = await fetch('http://127.0.0.1:5005/products', {
-                    method: 'POST',
+                const response = await fetch(`${API_URL}/${productId}`, {
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -200,15 +242,14 @@
                 });
 
                 if (response.ok) {
-                    alert('Product added successfully!');
-
+                    alert('Product updated successfully!');
                     window.location.href = './index.html';
                 } else {
                     const data = await response.json();
-                    alert(`Failed to add product: ${data.error || 'Unknown error'}`);
+                    alert(`Failed to update product: ${data.error || 'Unknown error'}`);
                 }
             } catch (error) {
-                console.error("Error submitting form:", error);
+                console.error("Error updating product:", error);
                 alert('An error occurred. Make sure the backend is running.');
             }
         }
