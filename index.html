@@ -839,7 +839,8 @@
             <a href="#" class="featured-item-link">Shop writing paper</a>
         </div>
         <div class="featured-item">
-            <img src="/images/feat3.jpeg" alt="Thank you cards" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/feat3.jpeg" alt="Thank you cards"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="featured-item-title"><span>Thank you card</span> SETS</div>
             <div class="featured-item-desc">Put your appreciation on paper. We've got beautiful photo & illustrated
                 cards to show your gratitude - thank us later!</div>
@@ -871,21 +872,24 @@
 
     <div class="triple-grid">
         <div class="triple-item">
-            <img src="/images/desk1.jpeg" alt="Sticky Notes" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/desk1.jpeg" alt="Sticky Notes"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="triple-item-title"><span>Stickers & sticky</span> NOTES</div>
             <div class="triple-item-desc">Find joy in visually organizing your days with our brightly coloured sticker
                 sets and sticky notes.</div>
             <a href="#" class="triple-item-link">Shop now</a>
         </div>
         <div class="triple-item">
-            <img src="/images/desk2.jpeg" alt="Pens and Pencils" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/desk2.jpeg" alt="Pens and Pencils"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="triple-item-title"><span>Pens &</span> PENCILS</div>
             <div class="triple-item-desc">From ink flows inspiration. The perfect fountain pens, highlighters and
                 fineliners do exist.</div>
             <a href="#" class="triple-item-link">Shop now</a>
         </div>
         <div class="triple-item">
-            <img src="/images/desk3.jpeg" alt="Desk Accessories" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/desk3.jpeg" alt="Desk Accessories"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="triple-item-title"><span>Desk</span> ACCESSORIES</div>
             <div class="triple-item-desc">We've made it easier than ever to brighten your desk with our smaller
                 stationery accents.</div>
@@ -913,22 +917,26 @@
 
     <div class="quad-grid">
         <div class="quad-item">
-            <img src="/images/fold1.jpeg" alt="Daily Planner" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/fold1.jpeg" alt="Daily Planner"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="quad-item-label">SPOTLIGHT</div>
             <div class="quad-item-title">What's inside our undated daily planner?</div>
         </div>
         <div class="quad-item">
-            <img src="/images/fold2.jpeg" alt="Wellness Journal" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/fold2.jpeg" alt="Wellness Journal"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="quad-item-label">ARTFUL ADVICE</div>
             <div class="quad-item-title">How to choose a journal</div>
         </div>
         <div class="quad-item">
-            <img src="/images/fold3.jpeg" alt="Books on Desk" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/fold3.jpeg" alt="Books on Desk"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="quad-item-label">SPOTLIGHT</div>
             <div class="quad-item-title">The science around studying with stationery</div>
         </div>
         <div class="quad-item">
-            <img src="/images/fold4.jpeg" alt="Finance Planner" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <img src="/images/fold4.jpeg" alt="Finance Planner"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
             <div class="quad-item-label">ARTFUL ADVICE</div>
             <div class="quad-item-title">How to shift your money mindset</div>
         </div>
@@ -1125,7 +1133,7 @@
                 room_no: document.getElementById('cust-room').value,
                 building_number: document.getElementById('cust-building').value,
                 order: cart.map(i => ({ id: i.id, title: i.title })),
-                payable_amount: parseFloat(document.getElementById('cart-total-amount').innerText.replace('$', ''))
+                payable_amount: parseFloat(document.getElementById('cart-total-amount').innerText.replace(/[^\d.]/g, ''))
             };
             try {
                 const res = await fetch(CHECKOUT_URL, {
