@@ -302,7 +302,7 @@
                 thumbnail: e.target.thumbnail.value
             };
             try {
-                const res = await fetch('http://localhost:5005/products', {
+                const res = await fetch('http://localhost:5001/products', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)

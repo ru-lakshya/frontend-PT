@@ -304,7 +304,7 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
-        const API_URL = "http://localhost:5005/products";
+        const API_URL = "http://localhost:5001/products";
 
         async function loadProductData() {
             if (!productId) { window.location.href = "./index.html"; return; }
