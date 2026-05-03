@@ -4,213 +4,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product - Inventory</title>
+    <title>Add New Piece — The Paper Project</title>
+
     <style>
+        @font-face {
+            font-family: 'Self-Modern';
+            src: url('./Self-Modern.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'HelveticaCustom';
+            src: url('./Helvetica.ttf') format('truetype');
+        }
+
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --border: #e2e8f0;
+            --cream: #f5f0eb;
+            --cream-dark: #ede6dd;
+            --white: #ffffff;
+            --charcoal: #2b2b2b;
+            --charcoal-light: #3d3d3d;
+            --text-dark: #2b2b2b;
+            --text-body: #555555;
+            --text-muted: #888888;
+            --border: #e0dbd5;
+            --font-primary: 'Self-Modern', Georgia, serif;
+            --font-secondary: 'HelveticaCustom', Helvetica, Arial, sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: var(--font-secondary);
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
+        /* ─── Announcement ─── */
+        .announcement-bar {
+            background: var(--charcoal);
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
 
+        /* ─── Header ─── */
         header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            background: var(--cream);
+            text-align: center;
+            padding: 1.5rem 2rem 0;
         }
 
-        h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
+        .logo {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
         }
 
         nav {
             display: flex;
-            gap: 1.5rem;
+            justify-content: center;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            transition: color 0.2s;
+            color: var(--text-body);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var(--primary);
-        }
-
+        nav a:hover,
         nav a.active {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
+            color: var(--text-dark);
         }
 
-
+        /* ─── Form ─── */
         main {
             display: flex;
             justify-content: center;
             padding: 4rem 2rem;
+            min-height: calc(100vh - 300px);
         }
 
         form {
-            background-color: var(--card-bg);
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 12px;
             padding: 2.5rem;
             width: 100%;
-            max-width: 500px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
-        form h2 {
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
+        h2 {
+            font-family: var(--font-primary);
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin: 0;
             text-align: center;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         label {
-            font-weight: 500;
-            color: var(--text-main);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
         }
 
         input {
             padding: 0.75rem;
             border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1rem;
+            background: var(--white);
             outline: none;
-            transition: border-color 0.2s;
+            font-family: var(--font-secondary);
+            font-size: 0.85rem;
+            transition: border-color 0.3s;
         }
 
         input:focus {
-            border-color: var(--primary);
+            border-color: var(--text-body);
         }
 
         button {
-            margin-top: 1rem;
-            padding: 0.875rem;
-            background-color: var(--primary);
-            color: white;
+            padding: 0.8rem;
+            background: var(--charcoal);
+            color: #ffffff;
             border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background 0.3s;
+            font-family: var(--font-secondary);
         }
 
         button:hover {
-            background-color: var(--primary-hover);
+            background: var(--charcoal-light);
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            background: var(--charcoal);
+            color: #cccccc;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+        }
+
+        .footer-col p {
+            font-size: 0.75rem;
+            line-height: 1.6;
+            color: #aaaaaa;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444444;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            color: #888888;
         }
     </style>
 </head>
 
 <body>
 
+    <div class="announcement-bar">
+        Free delivery on campus orders above ₹500
+    </div>
     <header>
-        <h3>Product Inventory</h3>
+        <div class="logo">The Paper Project</div>
         <nav>
-            <a href="./index.html">Home</a>
-            <a href="./add-product.html" class="active">Add Product</a>
+            <a href="./index.html">Shop All</a>
+            <a href="./index.html">Notebooks</a>
+            <a href="./index.html">Pens</a>
+            <a href="./index.html">Journals</a>
+            <a href="./index.html">Sets</a>
+            <a href="./add-product.html" class="active">Add New</a>
         </nav>
     </header>
 
     <main>
         <form onsubmit="handleFormSubmit(event)">
-            <h2>Add New Product</h2>
-
+            <h2>Add New Piece</h2>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" placeholder="e.g. Wireless Mouse" required>
+                <input type="text" id="title" name="title" placeholder="e.g. Midnight Fountain Pen" required>
             </div>
-
             <div class="form-group">
-                <label for="price">Price ($)</label>
-                <input type="number" id="price" name="price" step="0.01" min="0.01" placeholder="e.g. 29.99" required>
+                <label for="price">Price (₹)</label>
+                <input type="number" id="price" name="price" step="0.01" min="0.01" placeholder="e.g. 1299" required>
             </div>
-
             <div class="form-group">
                 <label for="rating">Rating (1-5)</label>
                 <input type="number" id="rating" name="rating" step="0.1" min="1" max="5" placeholder="e.g. 4.5"
                     required>
             </div>
-
             <div class="form-group">
                 <label for="thumbnail">Image URL (Optional)</label>
                 <input type="url" id="thumbnail" name="thumbnail" placeholder="https://example.com/image.png">
             </div>
-
-            <button type="submit">Add Product</button>
+            <button type="submit">Add to Collection</button>
         </form>
     </main>
 
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>The Paper Project</h4>
+                <p>Luxury stationery for the modern writer. Handcrafted pens, journals, and curated sets — delivered
+                    right to your dorm room.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <a href="./index.html">All Products</a>
+                <a href="./index.html">Notebooks</a>
+                <a href="./index.html">Pens & Pencils</a>
+                <a href="./index.html">Gift Sets</a>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <a href="#">Delivery Info</a>
+                <a href="#">Returns</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Email Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 The Paper Project &mdash; All Rights Reserved
+        </div>
+    </footer>
+
     <script>
-
         async function handleFormSubmit(e) {
-
             e.preventDefault();
-
-            const title = e.target.title.value;
-            const price = parseFloat(e.target.price.value);
-            const rating = parseFloat(e.target.rating.value);
-            const thumbnail = e.target.thumbnail.value;
-
-
-            const payload = { title, price, rating };
-            if (thumbnail) {
-                payload.thumbnail = thumbnail;
-            }
-
+            const payload = {
+                title: e.target.title.value,
+                price: parseFloat(e.target.price.value),
+                rating: parseFloat(e.target.rating.value),
+                thumbnail: e.target.thumbnail.value
+            };
             try {
-
-                const response = await fetch('http://127.0.0.1:5005/products', {
+                const res = await fetch('http://localhost:5005/products', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-
-                if (response.ok) {
-                    alert('Product added successfully!');
-
-                    window.location.href = './index.html';
-                } else {
-                    const data = await response.json();
-                    alert(`Failed to add product: ${data.error || 'Unknown error'}`);
-                }
-            } catch (error) {
-                console.error("Error submitting form:", error);
-                alert('An error occurred. Make sure the backend is running.');
-            }
+                if (res.ok) { alert('Product added!'); window.location.href = './index.html'; }
+            } catch (error) { console.error(error); }
         }
     </script>
 </body>

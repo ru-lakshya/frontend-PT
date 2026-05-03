@@ -4,19 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Paper Theory</title>
-    <link rel="stylesheet" href="style.css">
+    <title>The Paper Project — Curated Collection</title>
+
     <style>
+        @font-face {
+            font-family: 'Self-Modern';
+            src: url('./Self-Modern.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'HelveticaCustom';
+            src: url('./Helvetica.ttf') format('truetype');
+        }
+
         :root {
-            --gold: #efaa29;
-            --gold-dark: #805915;
-            --bg-white: #ffffff;
-            --bg-off: #fcfcfc;
-            --text-dark: #1a1a1a;
-            --text-muted: #777777;
-            --border: #eeeeee;
+            --cream: #faf7f0;
+            --cream-pink: #f6dfd1;
+            --cream-dark: #ede6dd;
+            --white: #ffffff;
+            --charcoal: #1e2525;
+            --charcoal-light: #3d3d3d;
+            --text-dark: #2b2b2b;
+            --text-body: #555555;
+            --text-muted: #888888;
+            --border: #e0dbd5;
+            --accent: #c9a96e;
+            --accent-dark: #a8854a;
             --danger: #b44a4a;
-            --font-primary: 'Larken', serif;
+            --font-primary: 'Self-Modern', Georgia, serif;
             --font-secondary: 'HelveticaCustom', Helvetica, Arial, sans-serif;
         }
 
@@ -28,136 +43,218 @@
 
         body {
             font-family: var(--font-secondary);
-            background-color: var(--bg-off);
+            background-color: var(--cream);
             color: var(--text-dark);
             line-height: 1.6;
         }
 
+        .announcement-bar {
+            background: var(--cream-pink);
+            color: #1e2525;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
         header {
-            background: var(--bg-white);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            background: var(--cream);
+            text-align: center;
+            padding: 1.2rem 2rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        header h3 {
+        .logo {
             font-family: var(--font-primary);
-            font-size: 1.5rem;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
         }
 
         nav {
             display: flex;
-            gap: 1.5rem;
+            justify-content: center;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-dark);
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            color: var(--text-body);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            transition: 0.3s;
+            transition: color 0.3s;
         }
 
         nav a:hover,
         nav a.active {
-            color: var(--gold);
+            color: var(--text-dark);
+        }
+
+        .nav-cart {
+            position: relative;
+        }
+
+        .cart-badge {
+            font-size: 0.6rem;
         }
 
         .hero {
-            text-align: center;
-            padding: 4rem 1rem;
-            background: var(--bg-white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            gap: 2rem;
+            align-items: center;
+            height: 80vh;
         }
 
-        .hero h1 {
-            font-family: var(--font-primary);
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
+        .hero-image {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 2px;
         }
 
-        .hero h1 span {
-            color: var(--gold);
+        .hero-text {
+            padding: 2rem 0;
         }
 
-        .hero p {
+        .hero-label {
+            font-size: 0.65rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
             color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-primary);
+            font-size: 2.6rem;
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            color: var(--text-body);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-shop {
+            display: inline-block;
+            background: var(--charcoal);
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
-            text-transform: capitalize;
-            font-size: 0.9rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-shop:hover {
+            background: var(--charcoal-light);
+        }
+
+        .section-title {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-primary);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+
+        .section-title h2 span {
+            font-style: italic;
         }
 
         #root {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 3rem 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            padding: 0 2rem 3rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 4px;
+            background: transparent;
             overflow: hidden;
-            transition: 0.3s;
+            transition: transform 0.3s;
             display: flex;
             flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
         }
 
         .card img {
             width: 100%;
-            height: 220px;
+            height: 260px;
             object-fit: cover;
+            border-radius: 2px;
         }
 
         .product-info {
-            padding: 1.5rem;
+            padding: 1rem 0.25rem;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.3rem;
             flex-grow: 1;
         }
 
         .product-info h4 {
             font-family: var(--font-primary);
-            font-size: 1.2rem;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-dark);
         }
 
         .price-rating {
             display: flex;
             justify-content: space-between;
-            color: var(--gold-dark);
-            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-body);
         }
 
         .actions {
             display: flex;
             gap: 0.5rem;
             margin-top: auto;
+            padding-top: 0.5rem;
         }
 
         button,
         .btn {
-            padding: 0.6rem;
-            border-radius: 2px;
+            padding: 0.55rem 0.75rem;
+            border-radius: 0;
             border: none;
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             transition: 0.3s;
             flex: 1;
             text-align: center;
@@ -166,12 +263,12 @@
         }
 
         .btn-primary {
-            background: var(--gold);
-            color: white;
+            background: var(--charcoal);
+            color: #ffffff;
         }
 
         .btn-primary:hover {
-            background: var(--gold-dark);
+            background: var(--charcoal-light);
         }
 
         .btn-delete {
@@ -182,7 +279,7 @@
 
         .btn-delete:hover {
             background: var(--danger);
-            color: white;
+            color: #ffffff;
         }
 
         .btn-edit {
@@ -191,15 +288,35 @@
             border: 1px solid var(--border);
         }
 
+        .btn-edit:hover {
+            border-color: var(--text-body);
+            color: var(--text-dark);
+        }
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 999;
+        }
+
+        .cart-overlay.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
         #cart-sidebar {
             position: fixed;
             top: 0;
-            right: -400px;
-            width: 400px;
+            right: -420px;
+            width: 420px;
             max-width: 100%;
             height: 100vh;
-            background: var(--bg-white);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
+            background: var(--cream);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08);
             transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             padding: 2rem;
             z-index: 1000;
@@ -214,6 +331,7 @@
         .cart-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid var(--border);
             padding-bottom: 1rem;
             margin-bottom: 1rem;
@@ -221,6 +339,24 @@
 
         .cart-header h3 {
             font-family: var(--font-primary);
+            font-size: 1.3rem;
+            font-weight: 400;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-body);
+            padding: 0;
+            flex: unset;
+            width: auto;
+            letter-spacing: 0;
+        }
+
+        .cart-close:hover {
+            color: var(--text-dark);
         }
 
         .cart-items {
@@ -231,21 +367,43 @@
         .cart-item {
             display: flex;
             justify-content: space-between;
-            padding: 1rem 0;
+            align-items: center;
+            padding: 0.75rem 0;
             border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            flex: unset;
+            width: auto;
+            padding: 0;
         }
 
         .cart-total {
             padding: 1rem 0;
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 600;
             display: flex;
             justify-content: space-between;
+            border-top: 1px solid var(--border);
         }
 
         #checkout-section {
             display: none;
             margin-top: 1rem;
+        }
+
+        #checkout-section h4 {
+            font-family: var(--font-primary);
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
         }
 
         #checkout-form {
@@ -255,87 +413,599 @@
         }
 
         #checkout-form input {
-            padding: 0.75rem;
+            padding: 0.7rem;
             border: 1px solid var(--border);
+            background: var(--white);
             outline: none;
             font-family: var(--font-secondary);
+            font-size: 0.85rem;
         }
 
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.1);
-            visibility: hidden;
-            opacity: 0;
+        #checkout-form input:focus {
+            border-color: var(--text-body);
+        }
+
+        .featured-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+
+        .featured-item {
+            text-align: left;
+        }
+
+        .featured-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-item-title {
+            font-family: var(--font-primary);
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .featured-item-title span {
+            font-style: italic;
+        }
+
+        .featured-item-desc {
+            font-size: 0.85rem;
+            color: var(--text-body);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-item-link {
+            font-size: 0.75rem;
+            text-decoration: underline;
+            color: var(--text-dark);
+            transition: color 0.3s;
+            text-underline-offset: 4px;
+        }
+
+        .featured-item-link:hover {
+            color: var(--text-body);
+        }
+
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .split-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+        }
+
+        .split-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .split-text .split-label {
+            font-size: 0.6rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .split-text h2 {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            font-weight: 400;
+            line-height: 1.3;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .split-text h2 span {
+            font-style: italic;
+        }
+
+        .split-text p {
+            font-size: 0.8rem;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .split-link {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--text-dark);
+            align-self: flex-start;
+            padding-bottom: 2px;
             transition: 0.3s;
-            z-index: 999;
         }
 
-        .cart-overlay.open {
-            visibility: visible;
-            opacity: 1;
+        .split-link:hover {
+            color: var(--text-body);
+            border-color: var(--text-body);
+        }
+
+        .triple-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .triple-item {
+            text-align: left;
+        }
+
+        .triple-item img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-bottom: 1.25rem;
+        }
+
+        .triple-item-title {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .triple-item-title span {
+            font-style: italic;
+        }
+
+        .triple-item-desc {
+            font-size: 0.85rem;
+            color: var(--text-body);
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+        }
+
+        .triple-item-link {
+            font-size: 0.8rem;
+            color: var(--text-body);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: 0.3s;
+        }
+
+        .triple-item-link:hover {
+            color: var(--text-dark);
+        }
+
+        .quad-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .quad-item {
+            text-align: left;
+        }
+
+        .quad-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 0;
+            margin-bottom: 1rem;
+        }
+
+        .quad-item-label {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .quad-item-title {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .editorial-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 1rem;
+        }
+
+        .editorial-row img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .promo-banner {
+            background: var(--charcoal);
+            color: #ffffff;
+            text-align: center;
+            padding: 2.5rem 2rem;
+        }
+
+        .promo-banner h3 {
+            font-family: var(--font-primary);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.3rem;
+        }
+
+        .promo-banner p {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: #cccccc;
         }
 
         footer {
+            background: var(--charcoal);
+            color: #cccccc;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #ffffff;
+        }
+
+        .footer-col p {
+            font-size: 0.75rem;
+            line-height: 1.6;
+            color: #aaaaaa;
+        }
+
+        .footer-bottom {
             text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: var(--font-secondary);
+            padding-top: 2rem;
+            border-top: 1px solid #444444;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            color: #888888;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                height: 260px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .featured-row {
+                grid-template-columns: 1fr;
+            }
+
+            .quad-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .triple-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+
+            .split-image {
+                min-height: 250px;
+            }
+
+            .editorial-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #root {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+
+            #cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
+
+    <div class="announcement-bar">
+        Free delivery on campus orders above ₹500
+    </div>
+
     <header>
-        <h3>The Paper Product</h3>
+        <div class="logo">The Paper Project</div>
         <nav>
-            <a href="./index.html" class="active">Home</a>
-            <a href="./add-product.html">Add Product</a>
-            <a href="#" onclick="toggleCart(); return false;">Cart (<span id="cart-count">0</span>)</a>
+            <a href="./index.html" class="active">Shop All</a>
+            <a href="./index.html">Notebooks</a>
+            <a href="./index.html">Pens</a>
+            <a href="./index.html">Journals</a>
+            <a href="./index.html">Sets</a>
+            <a href="./add-product.html">Add New</a>
+            <a href="#" onclick="toggleCart(); return false;" class="nav-cart">Cart (<span id="cart-count"
+                    class="cart-badge">0</span>)</a>
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero"
+        style="align-items: stretch; gap: 0; padding: 0; max-width: 100%; height: auto; margin-bottom: 4rem;">
+        <div class="hero-text"
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem;">
+            <div class="hero-label" style="margin-bottom: 1.5rem; letter-spacing: 2px; font-weight: 600; color: #333;">
+                NOTECARDS</div>
+            <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: #1a1a1a;">
+                <span style="font-style: italic;">Handwritten words</span><br>
+                <span style="font-style: normal; font-size: 3.2rem;">have</span> HEART
+            </h1>
+            <p style="margin: 0 auto 2.5rem; max-width: 420px; font-size: 0.9rem; line-height: 1.6; color: #444;">
+                Available in landscape and portrait, our notecards are ideal for mini love letters, life updates and
+                dinner party invites.
+            </p>
+            <a href="#products" class="btn-shop" style="padding: 0.8rem 2.5rem; font-size: 0.8rem;">Shop notecards</a>
+        </div>
+        <img src="/images/hero.jpeg" alt="Notecard with flowers" class="hero-image"
+            onerror="this.onerror=null;this.src='./images/no-pictures.png'"
+            style="height: 80%; min-height: 400px; width: 80%; object-fit: cover; display: flex; align-self: center; justify-self: center;">
+    </section>
+
+    <!-- Featured Products  -->
+    <div class="featured-row">
+        <div class="featured-item">
+            <img src="/images/feat1.jpeg" alt="Stationery accessories"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="featured-item-title">STATIONERY <span>accessories</span></div>
+            <div class="featured-item-desc">The pleasure of getting organized. Keep your days in order with delightful
+                Papier details - pen clips, bookmarks, sticky notes and lots more.</div>
+            <a href="#" class="featured-item-link">Shop stationery accessories</a>
+        </div>
+        <div class="featured-item">
+            <img src="/images/feat2.jpeg" alt="Letter writing paper"
+                onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="featured-item-title"><span>Letter writing paper</span> SETS</div>
+            <div class="featured-item-desc">Let the words and feelings flow. Whatever you've got to say, writing it down
+                in a letter is always the way.</div>
+            <a href="#" class="featured-item-link">Shop writing paper</a>
+        </div>
+        <div class="featured-item">
+            <img src="/images/feat3.jpeg" alt="Thank you cards" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="featured-item-title"><span>Thank you card</span> SETS</div>
+            <div class="featured-item-desc">Put your appreciation on paper. We've got beautiful photo & illustrated
+                cards to show your gratitude - thank us later!</div>
+            <a href="#" class="featured-item-link">Shop thank you card sets</a>
+        </div>
+    </div>
+
+    <!-- Designed by Us -->
+    <div class="section-title">
+        <h2>DESIGNED <span>by us,</span> PERSONALIZED <span>by you</span></h2>
+    </div>
+
+    <div class="split-section">
+        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80" alt="Writing"
+            class="split-image" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+        <div class="split-text">
+            <div class="split-label">Custom Orders</div>
+            <h2>Make it <span>yours</span></h2>
+            <p>From monogrammed journals to custom pen engravings — every piece can be personalized. Add initials, a
+                favourite quote, or a special date to create something truly one-of-a-kind.</p>
+            <a href="#" class="split-link">Learn About Personalization</a>
+        </div>
+    </div>
+
+    <!-- What's on The Desk -->
+    <div class="section-title">
+        <h2><span>It's all in the desk</span> DETAILS</h2>
+    </div>
+
+    <div class="triple-grid">
+        <div class="triple-item">
+            <img src="/images/desk1.jpeg" alt="Sticky Notes" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="triple-item-title"><span>Stickers & sticky</span> NOTES</div>
+            <div class="triple-item-desc">Find joy in visually organizing your days with our brightly coloured sticker
+                sets and sticky notes.</div>
+            <a href="#" class="triple-item-link">Shop now</a>
+        </div>
+        <div class="triple-item">
+            <img src="/images/desk2.jpeg" alt="Pens and Pencils" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="triple-item-title"><span>Pens &</span> PENCILS</div>
+            <div class="triple-item-desc">From ink flows inspiration. The perfect fountain pens, highlighters and
+                fineliners do exist.</div>
+            <a href="#" class="triple-item-link">Shop now</a>
+        </div>
+        <div class="triple-item">
+            <img src="/images/desk3.jpeg" alt="Desk Accessories" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="triple-item-title"><span>Desk</span> ACCESSORIES</div>
+            <div class="triple-item-desc">We've made it easier than ever to brighten your desk with our smaller
+                stationery accents.</div>
+            <a href="#" class="triple-item-link">Shop now</a>
+        </div>
+    </div>
+
+    <!-- Curated Sets -->
+    <div class="split-section">
+        <div class="split-text">
+            <div class="split-label">Gift Collection</div>
+            <h2>Curated <span>Sets</span></h2>
+            <p>Can't decide? Our hand-picked sets combine the finest pens, notebooks, and accessories into beautifully
+                boxed collections. Perfect for gifting — or treating yourself.</p>
+            <a href="#" class="split-link">Shop Gift Sets</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?w=800&q=80" alt="Gift sets"
+            class="split-image" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+    </div>
+
+    <!-- FOLD -->
+    <div class="section-title">
+        <h2><span>The</span> FOLD</h2>
+    </div>
+
+    <div class="quad-grid">
+        <div class="quad-item">
+            <img src="/images/fold1.jpeg" alt="Daily Planner" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="quad-item-label">SPOTLIGHT</div>
+            <div class="quad-item-title">What's inside our undated daily planner?</div>
+        </div>
+        <div class="quad-item">
+            <img src="/images/fold2.jpeg" alt="Wellness Journal" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="quad-item-label">ARTFUL ADVICE</div>
+            <div class="quad-item-title">How to choose a journal</div>
+        </div>
+        <div class="quad-item">
+            <img src="/images/fold3.jpeg" alt="Books on Desk" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="quad-item-label">SPOTLIGHT</div>
+            <div class="quad-item-title">The science around studying with stationery</div>
+        </div>
+        <div class="quad-item">
+            <img src="/images/fold4.jpeg" alt="Finance Planner" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
+            <div class="quad-item-label">ARTFUL ADVICE</div>
+            <div class="quad-item-title">How to shift your money mindset</div>
+        </div>
+    </div>
+
+    <div class="section-title" id="products">
+        <h2>Our <span>Collection</span></h2>
+    </div>
     <main id="root">
-        <div class="message">Loading products...</div>
+        <div
+            style="text-align: center; width: 100%; grid-column: 1/-1; padding: 5rem; font-family: var(--font-primary); color: var(--text-muted);">
+            Loading collection...</div>
     </main>
 
+    <div class="promo-banner">
+        <h3>Enjoy 40% OFF with code: PAPERPROJECT</h3>
+        <p>Valid for all campus deliveries · Limited time only</p>
+    </div>
 
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
     <div id="cart-sidebar">
         <div class="cart-header">
-            <h3>Cart</h3>
-            <button onclick="toggleCart()"
-                style="background:none; border:none; font-size:1.5rem; cursor:pointer;">×</button>
+            <h3>Your Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">&times;</button>
         </div>
-        <div class="cart-items" id="cart-items">
-            <div class="cart-item">
-                <div>
-                    <p>Premium Graphite Pencil Set (Pack of 12)</p>
-                    <p style="font-size:0.8rem; color:var(--text-muted)">₹ 899</p>
-                </div>
-                <button onclick="removeFromCart(0)"
-                    style="background:none; border:none; color:var(--danger); cursor:pointer;">Remove</button>
-            </div>
-        </div>
+        <div class="cart-items" id="cart-items"></div>
         <div class="cart-total">
-            <span>Total:</span>
-            <span id="cart-total-amount">₹ 899.00</span>
+            <span>Total</span>
+            <span id="cart-total-amount">₹0.00</span>
         </div>
-        <button class="btn-primary" id="proceed-checkout-btn" onclick="showCheckoutForm()"
-            style="display: block;">Checkout</button>
+        <button class="btn-primary" id="proceed-checkout-btn" onclick="showCheckoutForm()">Checkout</button>
 
         <div id="checkout-section">
+            <h4>Delivery Details</h4>
             <form id="checkout-form" onsubmit="handleCheckout(event)">
-                <input type="text" id="cust-name" placeholder="Name" required="">
-                <input type="text" id="cust-room" placeholder="Room No" required="">
-                <input type="text" id="cust-building" placeholder="Building Number" required="">
-                <button type="submit" class="btn-primary" style="margin-top:0.5rem">Place Order</button>
+                <input type="text" id="cust-name" placeholder="Full Name" required>
+                <input type="text" id="cust-room" placeholder="Room No" required>
+                <input type="text" id="cust-building" placeholder="Building Number" required>
+                <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">Place Order</button>
             </form>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>The Paper Project</h4>
+                <p>Luxury stationery for the modern writer. Handcrafted pens, journals, and curated sets — delivered
+                    right to your dorm room.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <a href="./index.html">All Products</a>
+                <a href="./index.html">Notebooks</a>
+                <a href="./index.html">Pens & Pencils</a>
+                <a href="./index.html">Gift Sets</a>
+                <a href="./index.html">Journals</a>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <a href="#">Delivery Info</a>
+                <a href="#">Returns</a>
+                <a href="#">Contact Us</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Email Newsletter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 The Paper Project &mdash; All Rights Reserved
+        </div>
+    </footer>
 
     <script>
         const API_URL = "http://localhost:5005/products";
@@ -343,27 +1013,22 @@
         let allProducts = [];
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        
         function renderProducts(products) {
             const root = document.getElementById("root");
-
             root.innerHTML = "";
-
             if (!products || products.length === 0) {
-                root.innerHTML = '<div class="message">No products found. Add some!</div>';
+                root.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">No pieces found.</div>';
                 return;
             }
-
             products.forEach(product => {
-                const newCard = document.createElement("div");
-                newCard.className = "card";
-
-                newCard.innerHTML = `
-                    <img src="${product.thumbnail || 'https://aeqpfgrxoydomedttvxx.supabase.co/storage/v1/object/public/images/no-pictures.png'}" alt="${product.title}" onerror="this.src='https://aeqpfgrxoydomedttvxx.supabase.co/storage/v1/object/public/images/no-pictures.png'" />
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <img src="${product.thumbnail || './images/no-pictures.png'}" onerror="this.onerror=null;this.src='./images/no-pictures.png'">
                     <div class="product-info">
                         <h4>${product.title}</h4>
                         <div class="price-rating">
-                            <span class="price">$${product.price}</span>
+                            <span>₹ ${product.price}</span>
                             <span>⭐️ ${product.rating}</span>
                         </div>
                         <div class="actions">
@@ -375,62 +1040,42 @@
                         </div>
                     </div>
                 `;
-                root.appendChild(newCard);
+                root.appendChild(card);
             });
         }
 
-    
         async function fetchProducts() {
             try {
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error("Failed to fetch");
-                const data = await response.json();
+                const res = await fetch(API_URL);
+                const data = await res.json();
                 allProducts = data.products;
                 renderProducts(allProducts);
                 renderCart();
-            } catch (error) {
-                console.error("Error fetching products:", error);
-                const root = document.getElementById("root");
-                root.innerHTML = '<div class="message" style="color: var(--danger);">Failed to load products. Ensure the backend is running.</div>';
+            } catch (e) {
+                console.error(e);
             }
         }
 
-        
-        async function handleDeleteProduct(productId) {
-            
-            if (!confirm("Are you sure you want to delete this product?")) return;
-
+        async function handleDeleteProduct(id) {
+            if (!confirm("Remove this piece?")) return;
             try {
-                const response = await fetch(`${API_URL}/${productId}`, {
-                    method: 'DELETE',
-                });
-
-                if (response.ok) {
-                    
-                    window.location.reload();
-                } else {
-                    alert("Failed to delete product.");
-                }
-            } catch (error) {
-                console.error("Error deleting product:", error);
-                alert("An error occurred while deleting.");
-            }
+                await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                window.location.reload();
+            } catch (e) { console.error(e); }
         }
-
-       
 
         function toggleCart() {
             document.getElementById('cart-sidebar').classList.toggle('open');
-            document.getElementById('checkout-section').style.display = 'none';
+            document.getElementById('cart-overlay').classList.toggle('open');
         }
 
-        function addToCart(productId) {
-            const product = allProducts.find(p => p.id === productId);
+        function addToCart(id) {
+            const product = allProducts.find(p => p.id === id);
             if (product) {
                 cart.push(product);
                 saveCart();
-                renderCart(); 
-                alert(`${product.title} added to cart!`);
+                renderCart();
+                alert(`${product.title} added.`);
             }
         }
 
@@ -447,96 +1092,54 @@
 
         function renderCart() {
             document.getElementById('cart-count').innerText = cart.length;
-            const cartItemsContainer = document.getElementById('cart-items');
-            cartItemsContainer.innerHTML = '';
-
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
             let total = 0;
-
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="color: var(--text-muted);">Your cart is empty.</p>';
+                container.innerHTML = '<p style="color:var(--text-muted); font-size: 0.85rem;">Your cart is empty.</p>';
                 document.getElementById('proceed-checkout-btn').style.display = 'none';
             } else {
                 document.getElementById('proceed-checkout-btn').style.display = 'block';
                 cart.forEach((item, index) => {
-                    let priceVal = typeof item.price === 'string' ? parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
-                    if (isNaN(priceVal)) priceVal = 0;
-                    total += priceVal;
-
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'cart-item';
-                    itemDiv.innerHTML = `
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${item.title}</div>
-                            <div class="cart-item-price">$${priceVal.toFixed(2)}</div>
-                        </div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${index})">Remove</button>
-                    `;
-                    cartItemsContainer.appendChild(itemDiv);
+                    let p = typeof item.price === 'string' ? parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
+                    total += isNaN(p) ? 0 : p;
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `<div><p style="font-size: 0.9rem;">${item.title}</p><p style="font-size:0.75rem; color:var(--text-muted)">₹ ${p}</p></div>
+                                    <button class="cart-item-remove" onclick="removeFromCart(${index})">Remove</button>`;
+                    container.appendChild(div);
                 });
             }
-
-            document.getElementById('cart-total-amount').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('cart-total-amount').innerText = `₹ ${total.toFixed(2)}`;
         }
 
         function showCheckoutForm() {
-            if (cart.length === 0) return;
             document.getElementById('proceed-checkout-btn').style.display = 'none';
             document.getElementById('checkout-section').style.display = 'block';
         }
 
         async function handleCheckout(e) {
             e.preventDefault();
-
-            if (cart.length === 0) {
-                alert("Cart is empty!");
-                return;
-            }
-
-            const name = document.getElementById('cust-name').value;
-            const room_no = document.getElementById('cust-room').value;
-            const building_number = document.getElementById('cust-building').value;
-
-            let total = 0;
-            const orderItems = cart.map(item => {
-                let priceVal = typeof item.price === 'string' ? parseFloat(item.price.replace(/[^0-9.]/g, '')) : item.price;
-                if (isNaN(priceVal)) priceVal = 0;
-                total += priceVal;
-                return { id: item.id, title: item.title, price: priceVal };
-            });
-
             const payload = {
-                name,
-                room_no,
-                building_number,
-                order: orderItems,
-                payable_amount: total
+                name: document.getElementById('cust-name').value,
+                room_no: document.getElementById('cust-room').value,
+                building_number: document.getElementById('cust-building').value,
+                order: cart.map(i => ({ id: i.id, title: i.title })),
+                payable_amount: parseFloat(document.getElementById('cart-total-amount').innerText.replace('$', ''))
             };
-
             try {
-                const response = await fetch(CHECKOUT_URL, {
+                const res = await fetch(CHECKOUT_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-
-                if (response.ok) {
+                if (res.ok) {
                     alert("your order will be reach you soon");
-                    cart = [];
-                    saveCart();
-                    renderCart();
-                    toggleCart();
-                    document.getElementById('checkout-form').reset();
-                } else {
-                    const data = await response.json();
-                    alert(`Checkout failed: ${data.error}`);
+                    cart = []; saveCart(); renderCart(); toggleCart();
                 }
-            } catch (err) {
-                console.error("Checkout error:", err);
-                alert("An error occurred during checkout.");
-            }
+            } catch (e) { console.error(e); }
         }
 
-        
         fetchProducts();
     </script>
 </body>
