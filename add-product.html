@@ -302,7 +302,7 @@
                 thumbnail: e.target.thumbnail.value
             };
             try {
-                const res = await fetch('http://localhost:5001/products', {
+                const res = await fetch('https://backend-pt-nr2g.onrender.com/products', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
