@@ -722,11 +722,17 @@
 
         @media (max-width: 768px) {
             .hero {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                height: auto !important;
+                padding: 0 !important;
+                gap: 0 !important;
             }
 
             .hero-image {
-                height: 260px;
+                width: 85% !important;
+                height: 260px !important;
+                min-height: unset !important;
+                object-fit: cover;
             }
 
             .hero-text h1 {
@@ -806,8 +812,9 @@
             <div class="hero-label" style="margin-bottom: 1.5rem; letter-spacing: 2px; font-weight: 600; color: #333;">
                 NOTECARDS</div>
             <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: #1a1a1a;">
-                <span style="font-style: italic;">Handwritten words</span><br>
-                <span style="font-style: normal; font-size: 3.2rem;">have</span> HEART
+                <span style="font-style: italic; font-size: 3rem;">Handwritten words</span><br>
+                <span style="font-style: normal; font-size: 3rem;">have</span>
+                <span style="font-style: italic; font-size: 3rem;">HEART</span>
             </h1>
             <p style="margin: 0 auto 2.5rem; max-width: 420px; font-size: 0.9rem; line-height: 1.6; color: #444;">
                 Available in landscape and portrait, our notecards are ideal for mini love letters, life updates and
